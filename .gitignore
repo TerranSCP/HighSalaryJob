@@ -1,0 +1,13 @@
+# highsalaryjob.com
+
+node_modules/
+build/
+public/
+.git
+.pdf
+.psd
+.jpg
+.png
+.svg
+
+
