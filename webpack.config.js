@@ -11,9 +11,16 @@ module.exports ={
     },
     plugins:[
         new htmlWebpackPlugin({
-            template:'./public/index.html'
+            template:'./public/index.html',
         })
     ] ,
+
+    devServer: {
+        contentBase: path.join(__dirname, './public'),
+        compress: true,
+        port: 9000
+    },
+
     module:{
         rules:[
             {
@@ -27,8 +34,7 @@ module.exports ={
             },
             {
                 test:/\.html$/,
-            use:{    
-               
+            use:{                   
                 loader:'html-loader'
                 }  
             }

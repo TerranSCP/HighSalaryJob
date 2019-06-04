@@ -2,9 +2,7 @@ import React , {Component} from "react";
 
 class App extends React.Component {
 
-    constructor(props){
-      this.props.name = this.props.name 
-    }
+
 
 
     render(){
