@@ -17,23 +17,22 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:8080/public/fakejson/',{
+        fetch('http://127.0.0.1:8080/fakejson/data.json',{
             method:'GET',
             mode:'no-cors',
             headers:{
-                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Origin':'127.0.0.1',
                 'Access-Control-Allow-Headers':'application/json'
             }     
     
         }).then((req,res)=>{
-            if(res.status === 200){
-            res.json().then((data) => {
-                this.setState({content:data})
-                })
-            }
-            else{
-                console.log(res.status);
-            }
+           
+            
+                //this.setState({content:res})
+                console.log(res)
+                
+            
+        
         }).catch((err)=>{
             throw new Error(`Something goes wrong ${err}`)
         })
