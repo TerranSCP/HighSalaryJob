@@ -20,9 +20,9 @@ module.exports = (env,argv) =>{
             __dirname:false,
             __filename:false
         },
-        externals:{
-            nodeExternals()
-        },
+        externals:
+            [nodeExternals()]
+        ,
         module:{
             rules:[
                 {
