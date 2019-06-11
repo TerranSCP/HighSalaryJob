@@ -3,10 +3,10 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports ={
-    entry:path.resolve("./src/index.js"),
+    entry:'./src/index.js',
     output:{
         publicPath:'/',
-        path:path.resolve(__dirname,'./build'),
+        path:path.join(__dirname,'build'),
         filename:'[name].js'
     },
     target:'web',

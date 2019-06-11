@@ -1,14 +1,15 @@
-import path from 'path';
-import express from 'express';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../../webpack.dev.config.js';
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware= require('webpack-hot-middleware');
+const config = require('../../webpack.dev.config')
+
 
 
 const server = express(),
 __DIST_DIR = __dirname;
-__HTML = path.resolve(__DIST_DIR,'index.html')
+__HTML = path.join(__DIST_DIR,'index.html')
 compiler = webpack(config);  
 
 
