@@ -1,5 +1,4 @@
 const path =require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 
@@ -8,9 +7,11 @@ module.exports = (env,argv) =>{
     const __SERVER_PATH = (argv.mode === "production") ? './src/server/server-prod.js' : './src/server/server-dev.js';
 
     return({
-        entry:__SERVER_PATH,
+        entry:{
+            server:__SERVER_PATH
+        },
         output: {
-            path: path.resolve(__dirname, '/build'),
+            path: path.join(__dirname, 'build'),
             publicPath: '/',
             filename: '[name].js'
           },
@@ -27,6 +28,7 @@ module.exports = (env,argv) =>{
             rules:[
                 {
                     test:/\.(js|jsx)$/,
+                    exclude:/node_modules/,
                 use:{    
                     loader:'babel-loader',
                     options:{
