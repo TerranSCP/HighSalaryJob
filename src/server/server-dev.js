@@ -3,14 +3,25 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware= require('webpack-hot-middleware');
-const config = require('../../webpack.dev.config')
+const config = require('../../webpack.dev.config');
+import {__DBUSERNAME,__DBPASSWORD} from './constConnection';
 
 
 
-const server = express(),
-__DIST_DIR = __dirname;
-__HTML = path.join(__DIST_DIR,'index.html')
-compiler = webpack(config);  
+const server = express();
+const __DIST_DIR = __dirname;
+const __HTML = path.join(__DIST_DIR,'index.html')
+const compiler = webpack(config);
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = `mongodb+srv://${__DBUSERNAME}:${__DBPASSWORD}@highsalary1-k3qzy.mongodb.net/test?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+    const collection = client.db("HighSalary1").collection("sample_training");
+    collection.find({name:"Omnidrive"}).toArray();
+        client.close();
+});
 
 
 server.use(webpackDevMiddleware(compiler,{
@@ -29,6 +40,10 @@ server.get('*',(rq,rs,next)=>{
         rs.end();
     })
 });
+
+server.get('./fakejson/',(rq,rs)=>{
+    rs.sendFile('./fakejson/data.json')
+})
 
 const __PORT = process.env.port || 8080 ;
 
