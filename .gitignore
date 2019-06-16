@@ -9,5 +9,6 @@ public/
 .jpg
 .png
 .svg
+src/server/constConnection.js
 
 
