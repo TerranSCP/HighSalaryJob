@@ -11,9 +11,13 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb+srv://${__DBUSERNAME}:${__DBPASSWORD}@highsalary1-k3qzy.mongodb.net/test?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
-  const collection = client.db("HighSalary1").collection("sample_training");
-    collection.find({name:"Omnidrive"}).toArray();
-        client.close();
+    if(err){
+        throw new Error(err);
+    }
+    const collection = client.db("HighSalary1").collection("vacancy_list");
+        collection.stats();
+            console.log('mongo connection succeed');
+                client.close();
 });
 
 
@@ -23,9 +27,7 @@ server.get('*',(rq,rs)=>{
     rs.sendFile(__HTML);
 });
 
-server.get('./fakejson/',(rq,rs)=>{
-    rs.sendFile('./fakejson/data.json')
-})
+
 
 const __PORT = process.env.port || 8080 ;
 server.listen(__PORT,()=>console.log(`Server is running on port: ${port}`))
